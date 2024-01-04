@@ -37,8 +37,6 @@ Created by developers, for developers, the SoftOne Developers Hub aims to make w
 4. Navigate to the Request Access tab on developers' Hub to view all access requests. Copy the JWT Token necessary for API access.
 5. Ensure the JWT Token is included in the Authorization header for HTTP requests.
 
-> > _(Further information?)_
-
 ### Requests
 
 **API Base URL**
@@ -87,7 +85,7 @@ When creating an entity which contains tables like items (ITELINES), we may want
 }
 ```
 
-> > > should expand on quantity\_1/quantity\_2/quantity\_3
+
 
 ### Query Operations
 
