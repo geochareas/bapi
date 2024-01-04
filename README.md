@@ -65,14 +65,25 @@ All request bodies must contain a "data" property encapsulating entity-specific 
 
 **Example Request Body:**
 
-```JSON
+When creating an entity which contains tables like items (ITELINES), we may want to set several quantities. In order to set `ITELINES.QTY1`, on the documentation we can see that we have to set the `Quantity_2` property
+
+| quantity | <p>string or null</p><p>Set <code>Quantity</code> for ITELINES.QTY,<br><code>Quantity_2</code> for ITELINES.QTY1,<br><code>Quantity_3</code> for ITELINES.QTY2</p> |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+```json
 {
     "data": {
         "transactionCode": 7021,
-        "customerId": "29",
-        "code": 1
+        "customerId": "32",
+        "items": [
+            {
+                "itemID": 1191,
+                "quantity_2": 1,
+                "vatId": 0
+            }
+        ]
     },
-    "select": "sales.documentCode, Sales.createdat, customerid"
+    "select": "sales.documentCode,Sales.createdat,customerid,items.quantity_2"
 }
 ```
 
@@ -153,6 +164,12 @@ Use the `lastKey` query param and `skip` the current page
 
 On the next request, skip 50, 75, 100 etc and repeat until the response has no `lastKey` property (there are no pages left)
 
-
-
 #### Select
+
+Example: Select only the `documentCode`,`customerVatCode`,`customerId`,`createdAt`fields
+
+{% hint style="info" %}
+If the field does not contain the entity (e.g. sales), it will be automatically prefixed.
+{% endhint %}
+
+`GET https://developers.softone.gr/api/v1/sales?select=sales.documentCode,customerVatCode,customerId,createdAt`
